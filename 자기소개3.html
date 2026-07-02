@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자기소개 - 건축 및 건축시공 전문가</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 기본 여백 초기화 및 박스 사이징 설정 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', '맑은 고딕', '돋움', sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            background-color: #F8F9FA;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* 색상 변수 설정 (네이비 블루 & 차분한 그레이) */
+        :root {
+            --primary-navy: #1B365D; /* 신뢰감을 주는 네이비 */
+            --secondary-navy: #2C5282;
+            --light-gray: #EDF2F7; /* 차분한 배경용 그레이 */
+            --text-gray: #4A5568;
+            --white: #FFFFFF;
+        }
+
+        /* 타이포그래피 */
+        h1, h2, h3 {
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        /* 공통 레이아웃 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 100px 0;
+        }
+
+        /* 상단 네비게이션 바 */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+        }
+        
+        .nav-links a {
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.3s ease; /* 부드러운 애니메이션 효과 */
+        }
+        
+        .nav-links a:hover {
+            color: #3182CE;
+        }
+
+        /* 메인 섹션 (Hero) */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-navy) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 180px 20px 120px;
+            margin-top: 60px; /* 헤더 높이만큼 여백 */
+        }
+        
+        .hero h1 {
+            color: var(--white);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            color: var(--light-gray);
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--white);
+            color: var(--primary-navy);
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s ease; /* 버튼 애니메이션 효과 */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px); /* 마우스 오버 시 위로 살짝 올라가는 효과 */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            background-color: var(--light-gray);
+        }
+
+        /* 소개 섹션 (About Me) */
+        .about {
+            background-color: var(--white);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .about-image img {
+            border-radius: 10px;
+            max-width: 100%;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.02);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            font-size: 2.25rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+        }
+
+        /* 전문 분야 및 목표 섹션 (Expertise & Goals) */
+        .expertise {
+            background-color: var(--light-gray);
+            text-align: center;
+        }
+        
+        .expertise h2 {
+            font-size: 2.25rem;
+            margin-bottom: 3rem;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+        
+        .card {
+            background-color: var(--white);
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 카드 애니메이션 효과 */
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary-navy);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .card p {
+            margin-bottom: 0.8rem;
+        }
+
+        /* 푸터 */
+        footer {
+            background-color: var(--primary-navy);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        /* 모바일 반응형 디자인 (Media Query) */
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column; /* 모바일에서는 세로로 배치 */
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .nav-links {
+                display: none; /* 모바일 화면에서는 상단 메뉴 숨김 */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Portfolio</div>
+            <div class="nav-links">
+                <a href="#about">About Me</a>
+                <a href="#expertise">Expertise & Goals</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>신뢰와 원칙을 바탕으로 한 새로운 도약</h1>
+            <p>건축 및 건축시공 전문가</p>
+            <a href="#about" class="btn">프로필 보기</a>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container about-content">
+            <div class="about-image">
+                <img src="https://via.placeholder.com/400x500?text=Profile+Image" alt="프로필 사진">
+            </div>
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>다년간 건설 현장에서 발로 뛰며 쌓아온 풍부한 실무 경험과 꼼꼼한 관리 역량을 바탕으로, 건축시공 분야에서 전문성을 확고히 다져왔습니다.</p>
+                <p>오랜 현장 생활 속에서 체득한 원칙 중심의 업무 태도는 다양한 변수를 완벽히 통제하고, 품질과 안전을 책임지는 감리 및 기술 자문 업무에 큰 시너지를 내고 있습니다.</p>
+                <p>평소 철저한 자기 관리를 실천하며, 급변하는 건축 기술 트렌드에 발맞추어 끊임없이 새로운 것을 배우고 도전하고 있습니다. 특히 관리나 영업 직무보다는 현장의 실질적인 문제를 해결하는 실무 중심의 기술 자문 역할에 가장 큰 보람을 느낍니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="expertise" id="expertise">
+        <div class="container">
+            <h2>Expertise & Goals</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>핵심 역량</h3>
+                    <p><strong>■ 건축 감리:</strong> 현장 품질, 안전, 공정의 철저한 관리 감독</p>
+                    <p><strong>■ 기술 지원:</strong> 시공 중 발생하는 기술적 문제 해결 및 대안 제시</p>
+                    <p><strong>■ 비상주 자문:</strong> 프로젝트 전반에 걸친 전문적이고 객관적인 시공 자문</p>
+                </div>
+                <div class="card">
+                    <h3>현재 진행 중인 목표</h3>
+                    <p><strong>■ 건축사 자격증 취득:</strong> 실무 경험을 바탕으로 한층 더 높은 수준의 전문성 확보 준비</p>
+                    <p><strong>■ BIM 기술 역량 강화:</strong> 스마트 건설 시대에 맞춘 3D 정보 모델링 활용 및 기술 내재화</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026. 건축 및 건축시공 전문가 Portfolio. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
