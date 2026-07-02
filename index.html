@@ -2,145 +2,211 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>나의 자기소개</title>
+    <title>자기소개 페이지</title>
     <style>
-        /* 1. 전체 배경 및 폰트 기본 설정 */
-        body {
-            font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
-            background-color: #f0f2f5; /* 차분하고 안정적인 배경색 */
-            color: #333;
+        /* 1. 기본 스타일 리셋 및 전체 설정 */
+        * {
             margin: 0;
-            padding: 40px 20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+            background-color: #f8f9fa; /* 눈이 편안한 밝은 회색 바탕 */
+            color: #333333;
             line-height: 1.6;
         }
 
-        /* 2. 메인 컨테이너 (내용을 담는 흰색 도화지 역할) */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
+        /* 2. 헤더 (상단 네비게이션) */
+        header {
             background-color: #ffffff;
-            padding: 40px;
-            border-radius: 15px; /* 모서리를 둥글게 */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* 입체감을 주는 그림자 */
-        }
-
-        /* 3. 제목 스타일링 */
-        h1 {
-            color: #1a365d;
+            padding: 30px 20px;
             text-align: center;
-            font-size: 24px;
-            margin-bottom: 30px;
-            word-break: keep-all;
+            border-bottom: 1px solid #e9ecef;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
         }
 
-        h2 {
-            color: #2b6cb0;
-            font-size: 20px;
-            border-bottom: 2px solid #ebf8ff;
-            padding-bottom: 10px;
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-
-        h3 {
-            color: #2d3748;
-            font-size: 18px;
-            margin-top: 0;
-        }
-
-        /* 4. 이미지 스타일링 (프로필과 취미 사진) */
-        img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px; /* 사진 모서리를 부드럽게 */
-            margin: 15px 0;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        /* 프로필 사진을 화면 가운데로 정렬하는 효과 */
-        .profile-img {
-            margin: 0 auto 20px auto;
-            border-radius: 50%; /* 프로필 사진을 원형으로 만듦 */
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        /* 5. 텍스트 및 강조 스타일링 */
-        p {
-            font-size: 16px;
-            color: #4a5568;
+        header h1 {
+            font-size: 1.8rem;
+            color: #212529;
             margin-bottom: 15px;
         }
 
-        strong {
-            color: #e53e3e; /* 포부 부분의 글씨를 붉은 톤으로 강조 */
-            background-color: #fff5f5;
-            padding: 2px 6px;
-            border-radius: 4px;
+        nav a {
+            color: #495057;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.2s ease; /* 부드러운 색상 변경 효과 */
         }
 
-        /* 6. 취미 리스트 스타일링 (리스트 기호를 없애고 카드 형태로 변환) */
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        nav a:hover {
+            color: #4dabf7; /* 부드러운 파란색으로 변경 */
         }
 
-        li {
-            background-color: #f7fafc;
-            padding: 25px;
-            border-radius: 10px;
+        nav a:active {
+            color: #15aabf;
+            font-weight: bold;
+        }
+
+        /* 3. 메인 콘텐츠 영역 (중앙 정렬 및 너비 제한) */
+        main {
+            max-width: 800px;
+            margin: 40px auto; /* 위아래 40px 여백, 좌우 자동 중앙 정렬 */
+            padding: 0 20px;
+        }
+
+        /* 세션 공통 스타일 */
+        section {
+            background-color: #ffffff;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px; /* 모서리를 둥글게 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03); /* 은은한 그림자 */
+        }
+
+        section h2 {
+            font-size: 1.4rem;
+            color: #2b2d42;
+            border-left: 4px solid #4dabf7; /* 제목 왼쪽에 포인트 바 추가 */
+            padding-left: 12px;
             margin-bottom: 20px;
-            border: 1px solid #e2e8f0;
-            transition: transform 0.2s ease;
         }
 
-        li:hover {
-            transform: translateY(-5px); /* 마우스를 올리면 살짝 위로 떠오르는 효과 */
+        /* 4. 자기소개 섹션 */
+        #intro figure {
+            text-align: center;
+            margin-bottom: 20px;
         }
 
-        /* 7. 가로줄(hr) 숨김 처리 (CSS 여백과 테두리로 대체하여 더 깔끔하게 구성) */
-        hr {
-            display: none;
+        #intro img {
+            border-radius: 50%; /* 프로필 이미지를 동그랗게 */
+            border: 3px solid #e9ecef;
+            object-fit: cover;
+        }
+
+        #intro figcaption {
+            font-size: 0.9rem;
+            color: #868e96;
+            margin-top: 8px;
+        }
+
+        #intro p {
+            margin-bottom: 12px;
+        }
+
+        /* 5. 취미 생활 섹션 */
+        article {
+            background-color: #fdfdfd;
+            border: 1px solid #f1f3f5;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        article:last-child {
+            margin-bottom: 0; /* 마지막 article은 아래 여백 제거 */
+        }
+
+        article h3 {
+            font-size: 1.1rem;
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        article p {
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+
+        /* 이미지들을 깔끔하게 배열 */
+        article img {
+            border-radius: 6px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* 6. 푸터 */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #868e96;
+            font-size: 0.9rem;
+            margin-top: 60px;
+            border-top: 1px solid #e9ecef;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>안녕하세요! 늘 새로운 배움을 즐기는 60대, [어지니]입니다.</h1>
+    <header>
+        <h1>안녕하세요. 홍길동입니다.</h1>
+        <nav>
+            <a href="#intro">소개</a>
+            <a href="#hobby">취미</a>
+            <a href="#goal">수업 포부</a>
+            <a href="./가위바위보게임.html" target="_blank">가위바위보게임</a>
+        </nav>
+    </header>
 
-        <h2>나의 프로필</h2>
-        <img src="소스/다운로드 (1).jpg" alt="그림" class="profile-img">
-        <p>새로운 기술을 배우고 도전하는 것을 즐기는 60대입니다. 늘 긍정적인 마음으로 다양한 분야를 탐구하며 활기차고 주체적인 삶을 가꾸어가고 있습니다.</p>
+    <main>
 
-        <h2>나의 취미</h2>
-        <ul>
-            <li>
-                <h3>1. 생성형 AI로 이미지 창작하기</h3>
-                <p>최근 푹 빠져있는 취미입니다. 다양한 프롬프트를 연구하여 계절 인사말이나 아름다운 풍경 등 상상하는 이미지를 AI로 직접 만들어내는 과정이 무척 흥미롭습니다.</p>
-                <img src="소스/다운로드2.jpg" alt="AI로 만든 이미지 또는 관련 사진" width="300">
-            </li>
-            <li>
-                <h3>2. 일상 속 건강 관리</h3>
-                <p>지치지 않는 열정을 유지하기 위해 꾸준히 체력을 관리하고 있습니다. 규칙적인 생활 습관과 식단을 통해 몸과 마음을 늘 건강하고 맑게 유지하는 것을 좋아합니다.</p>
-                <img src="소스/다운로드2.jpg" alt="건강 관리 관련 사진" width="300">
-            </li>
-        </ul>
+        <section id="intro">
+            <h2>자기소개</h2>
 
-        <h2>AI 에이전트 마스터 수업에 임하는 포부</h2>
-        <p>
-            현재 저는 <strong>'AI 에이전트 마스터 수업'</strong>이라는 새로운 도전을 진행 중입니다. 
-            빠르게 변화하는 디지털 시대에 발맞추어 AI 기술을 깊이 있게 이해하고, 이를 실생활과 다양한 활동에 유용하게 활용하는 방법을 마스터하고자 합니다.
-        </p>
-        <p>
-            배움에는 나이가 없다는 것을 보여주듯, 매 수업마다 열정적이고 주도적으로 참여하여 AI를 자유자재로 다루는 인재로 거듭나겠습니다. 
-            이번 과정을 성공적으로 이수하여 앞으로의 삶을 더욱 풍요롭고 지혜롭게 만들어 나갈 것입니다.
-        </p>
-    </div>
+            <figure>
+                <img src="images/profile.png" alt="캐리커쳐 사진" width="200" height="200">
+                <figcaption>나의 캐리커쳐</figcaption>
+            </figure>
+
+            <p><strong>닉네임 :</strong> AI Teacher</p>
+
+            <p>
+                안녕하세요. 저는 인공지능과 소프트웨어 분야를 교육하고 있는 강사입니다.
+                새로운 기술을 배우고 이를 교육 현장에 적용하는 것을 좋아합니다.
+                특히 생성형 AI와 웹 기술에 관심이 많으며, 다양한 프로젝트를 통해
+                실무 경험을 쌓고 있습니다.
+            </p>
+        </section>
+
+        <section id="hobby">
+            <h2>취미 생활</h2>
+
+            <article>
+                <h3>목공 작업</h3>
+                <p>
+                    주말에는 직접 목재를 가공하여 테이블이나 소품을 만드는 것을 좋아합니다.
+                </p>
+                <img src="images/ezu_목공01.png" alt="목공 사진1" width="200">
+                <img src="images/ezu_목공02.png" alt="목공 사진2" width="200">
+            </article>
+
+            <article>
+                <h3>여행</h3>
+                <p>
+                    새로운 지역을 방문하며 다양한 문화를 경험하는 것을 즐깁니다.
+                </p>
+                <img src="images/ezu_여행.png" alt="여행 사진1" width="200">
+            </article>
+        </section>
+
+        <section id="goal">
+            <h2>수업에 임하는 포부</h2>
+
+            <p>
+                이번 수업에서는 단순히 기술을 배우는 것에 그치지 않고,
+                실제 업무와 프로젝트에 활용할 수 있는 수준까지 이해하는 것을 목표로 하고 있습니다.
+                또한 함께 학습하는 분들과 적극적으로 소통하며 서로의 경험을 공유하고 싶습니다.
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Copyright © 2026 홍길동</p>
+    </footer>
 
 </body>
 </html>
